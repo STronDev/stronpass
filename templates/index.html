@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://kit.fontawesome.com/6ae62ef715.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+		<title>Passman</title>
+	</head>
+	<body>
+		<nav class="nav"></nav>
+		<form id="frm" class="frm" action="/search/" method="POST">
+			<input type="text" name="name" id="name" placeholder="Enter the Website Name" />
+			<i class="fas fa-search" onclick="search()"></i>
+		</form>
+		<div class="display">
+			{% if info %}
+			<h6>Name:</h6>
+			<h5 id="dis_name">{{ dta["name"] }}</h5>
+			<h6>Username:</h6>
+			<h5 id="dis_mail">{{ dta["username"] }}</h5>
+			<h6>Password:</h6>
+			<h5 id="dis_password">{{ dta["password"] }}</h5>
+
+			{% else %}
+			<h6>Name:</h6>
+			<h5 id="dis_name">Stron.com</h5>
+			<h6>Username:</h6>
+			<h5 id="dis_mail">stron@gmail.com</h5>
+			<h6>Password:</h6>
+			<h5 id="dis_password">gwe76ah2i</h5>
+
+			{% endif %}
+			<i class="fas fa-paper-plane" onclick="openweb()"></i>
+			<i class="fas fa-trash-alt"></i>
+			<i class="fas fa-plus"></i>
+		</div>
+		<script src="https://kit.fontawesome.com/fdf5c2a09f.js" crossorigin="anonymous"></script>
+		<script>
+			function search() {
+				document.getElementById("frm").submit();
+			}
+			{% if info %}
+				function openweb() {
+					window.open("{{ dta['url'] }}");
+				}
+			{% endif %}
+		</script>
+	</body>
+</html>
